@@ -310,9 +310,12 @@ l00p: #enter only when t0 >1
 lb $t2, Paragraph($s0)
 
 beq $t2,0,Endit  #[end of paragraph]
-bne $t2,' ',cont # char != space (space value in ascii = 32)
-beq $t2,' ',afterspace #char == space (space value in ascii = 32)
 
+beq $t2,' ',afterspace #char == space (space value in ascii = 32)
+beq $t2,',',afterspace #sepecial cases like space
+beq $t2,'.',afterspace #sepecial cases like space
+beq $t2,'?',afterspace #sepecial cases like space
+bne $t2,' ',cont # char != space (space value in ascii = 32)
 cont: #next char
 addi $s0, $s0, 1 #t0++
     j l00p
