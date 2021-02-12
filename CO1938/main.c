@@ -6,6 +6,8 @@
 void search(char paragraph[PARAGRAPH_SIZE]);
 void substring (char string[10],int start,int end);
 void capsfirst (char paragraph[PARAGRAPH_SIZE]);
+void lowerupper(char paragraph[PARAGRAPH_SIZE],int x);
+void join (char s1[10],char s2[10]);
 
 int main()
 {
@@ -13,6 +15,7 @@ int main()
     int choice;
     char string2[10];
     int start,end;
+    char s1[10],s2[10];
     printf("Enter a Paragraph MAX 100 characters(End it with TAB):\n");
     scanf("%100[^\t]s", paragraph); //100 to fix overflow
     printf("\nChoose an operation\n(1)Search on a specific word/character\n(2)Extract a substring from a word\n(3)Join strings\n(4)Capitalize first letter in each word\n(5)Convert all characters in the paragraph to Lower/Upper case\n");
@@ -31,6 +34,14 @@ int main()
         printf("enter the end:");
         scanf("%d",&end);
         substring(string2,start,end);
+        break;
+
+    case 3:
+        printf("Type string 1: ");
+        scanf("%s",s1);
+        printf("Type string 2: ");
+        scanf("%s",s2);
+        join(s1,s2);
         break;
 
     case 4:
@@ -165,4 +176,20 @@ void capsfirst (char paragraph[PARAGRAPH_SIZE])
 	}
 
 	printf("Capitalize string is: %s\n",paragraph);
+}
+
+void join(char s1[10],char s2[10])
+{
+    int length=0;
+    while (s1[length] != '\0')
+    {
+        ++length;
+    }
+    for (int i=0; s2[i] != '\0'; ++i, ++length)
+    {
+    s1[length] = s2[i];
+    }
+
+    s1[length] = '\0';
+    printf("%s",s1);
 }
